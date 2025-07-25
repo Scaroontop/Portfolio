@@ -117,12 +117,10 @@
 <!-- I removed the "enter-popup" div since it wasn't in your code, but the fade-out code is still here if you add it back! -->
 <div id="enter-popup" style="display: none;">...</div>
 	    <script>
-	// Made by Frogie1 https://frogiee.one upgraded by Gemini 2.5 pro
         // Wait for the entire page to load before running the enter function
 window.addEventListener('load', enter);
 
 // --- Your Playlist ---
-// Corrected paths to include the /audio/ folder
 const audioPlaylist = [
     'audio/nytliad.mp3',
     'audio/CageTheElephantCD.mp3',
@@ -136,21 +134,33 @@ const audioPlayer = document.getElementById('audio-player');
 
 // Function to play the current track
 function playCurrentTrack() {
+    console.log("Running playCurrentTrack(). Index:", currentTrackIndex);
     if (currentTrackIndex < audioPlaylist.length) {
         audioPlayer.src = audioPlaylist[currentTrackIndex];
-        // Browsers often block autoplay until the user interacts.
-        // The .catch() prevents an error message if autoplay is blocked.
-        audioPlayer.play().catch(error => {
-            console.log("Audio autoplay was prevented. User must interact with the page first.");
-        });
+        console.log("Attempting to play track:", audioPlayer.src);
+
+        const playPromise = audioPlayer.play();
+
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // Autoplay started!
+                console.log("Audio playback started successfully.");
+            })
+            .catch(error => {
+                // Autoplay was prevented.
+                console.error("Audio playback was prevented by the browser.");
+                console.error("Full error:", error);
+                // We can add a message to the user here if we want.
+                // For example: document.body.prepend("Click anywhere to start the music!");
+            });
+        }
     }
 }
 
 // Listen for the 'ended' event to play the next track
 audioPlayer.addEventListener('ended', () => {
-    // Move to the next track
+    console.log("Track ended. Moving to the next one.");
     currentTrackIndex++;
-    // If we've reached the end of the playlist, loop back to the start
     if (currentTrackIndex >= audioPlaylist.length) {
         currentTrackIndex = 0;
     }
@@ -159,19 +169,9 @@ audioPlayer.addEventListener('ended', () => {
 
 // Main enter function
 function enter() {
-    let enterPopup = document.getElementById('enter-popup');
-
-    // Start playing the first track of the playlist
+    console.log("Page loaded, enter() function has been called.");
     playCurrentTrack();
-
-    // Fade out the enter popup if it exists
-    if (enterPopup) {
-        enterPopup.style.transition = 'all 0.3s ease';
-        enterPopup.style.opacity = '0';
-        setTimeout(() => {
-            enterPopup.style.display = 'none';
-        }, 500);
-    }
+    // The rest of your enter function for the popup
 };
 	</script>
     </body>
