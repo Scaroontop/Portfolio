@@ -117,9 +117,6 @@
 <!-- I removed the "enter-popup" div since it wasn't in your code, but the fade-out code is still here if you add it back! -->
 <div id="enter-popup" style="display: none;">...</div>
 	    <script>
-        // Wait for the entire page to load before running the enter function
-window.addEventListener('load', enter);
-
 // --- Your Playlist ---
 const audioPlaylist = [
     'audio/nytliad.mp3',
@@ -132,47 +129,48 @@ const audioPlaylist = [
 let currentTrackIndex = 0;
 const audioPlayer = document.getElementById('audio-player');
 
+// Main enter function - THIS WILL NOW RUN ON THE FIRST CLICK
+function enter() {
+    let enterPopup = document.getElementById('enter-popup');
+
+    // Start playing the first track of the playlist
+    playCurrentTrack();
+
+    // Fade out the enter popup if it exists
+    if (enterPopup) {
+        enterPopup.style.transition = 'all 0.3s ease';
+        enterPopup.style.opacity = '0';
+        setTimeout(() => {
+            enterPopup.style.display = 'none';
+        }, 500);
+    }
+};
+
 // Function to play the current track
 function playCurrentTrack() {
-    console.log("Running playCurrentTrack(). Index:", currentTrackIndex);
     if (currentTrackIndex < audioPlaylist.length) {
         audioPlayer.src = audioPlaylist[currentTrackIndex];
-        console.log("Attempting to play track:", audioPlayer.src);
-
-        const playPromise = audioPlayer.play();
-
-        if (playPromise !== undefined) {
-            playPromise.then(_ => {
-                // Autoplay started!
-                console.log("Audio playback started successfully.");
-            })
-            .catch(error => {
-                // Autoplay was prevented.
-                console.error("Audio playback was prevented by the browser.");
-                console.error("Full error:", error);
-                // We can add a message to the user here if we want.
-                // For example: document.body.prepend("Click anywhere to start the music!");
-            });
-        }
+        // The .play() will now work because it's triggered by a user click
+        audioPlayer.play();
     }
 }
 
 // Listen for the 'ended' event to play the next track
 audioPlayer.addEventListener('ended', () => {
-    console.log("Track ended. Moving to the next one.");
+    // Move to the next track
     currentTrackIndex++;
+    // If we've reached the end of the playlist, loop back to the start
     if (currentTrackIndex >= audioPlaylist.length) {
         currentTrackIndex = 0;
     }
     playCurrentTrack();
 });
 
-// Main enter function
-function enter() {
-    console.log("Page loaded, enter() function has been called.");
-    playCurrentTrack();
-    // The rest of your enter function for the popup
-};
+
+// *** THE FIX: LISTEN FOR THE FIRST USER INTERACTION ***
+// This line tells the browser: "When the user clicks anywhere on the page for the
+// very first time, run the 'enter' function, and then stop listening for clicks."
+document.addEventListener('click', enter, { once: true });
 	</script>
     </body>
 </html>
