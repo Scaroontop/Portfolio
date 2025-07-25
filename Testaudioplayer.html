@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sap/Angel's -|- Dev/Devs</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome for player icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* The height and margin were used to improve something ty Gemini 2.5 pro */
+        * {
+        color: white;
+        background: black;
+        text-align: center;
+        height: 100%;
+        margin: 0;
+        }
+        /* Use Ai for this part to make sure it fits all screens so ty Gemini 2.5 pro */
+        body {
+        background: url('https://i.ytimg.com/vi/BVXOWGoehKg/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG-B4AC0AWKAgwIABABGCMgOSh_MA8=&rs=AOn4CLDwNlb2FK661z4m9UsMhc6vILuDJA') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        }
+        a {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        }
+        /* Used Gemini 2.5 pro to understand how to center images */
+        .images {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 100%;
+        }
+        /* Learned how to center images from the css above also learned from another website how to make images rounder since I forgot ty frogiee.one */
+        #pfp {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 100%;
+        border: solid 2.5px white;
+        }
+        /* This was fully made by Gemini 2.5 Pro */
+        .player-container {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 400px;
+            z-index: 100;
+        }
+        .player {
+            background-color: rgba(30, 30, 30, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            padding: 15px 20px;
+        }
+        .song-name {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .player-controls {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .control-btn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: #eee;
+            padding: 5px;
+        }
+        .play-pause-btn {
+            font-size: 24px;
+        }
+        .progress-container {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            cursor: pointer;
+            height: 8px;
+            margin-bottom: 5px;
+            position: relative;
+        }
+        .progress {
+            background-color: #1DB954;
+            border-radius: 5px;
+            height: 100%;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+        .time-indicator {
+            position: absolute;
+            top: -28px;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            display: none;
+            pointer-events: none;
+        }
+        .time-stamps {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #ccc;
+        }
+        .volume-container {
+            position: relative;
+        }
+        .volume-slider {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(50, 50, 50, 0.9);
+            border-radius: 5px;
+            padding: 8px 12px;
+            display: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .volume-container:hover .volume-slider {
+            display: block;
+        }
+        .volume-slider input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            outline: none;
+            opacity: 0.8;
+            transition: opacity .2s;
+        }
+        .volume-slider input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #1DB954;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<!-- I cleaned the Navbar also made it so that the hr elements are now inside of the navbar I asked Gemini 2.5 pro which practice is better -->
+    <nav>
+    <hr />
+    <a href="">Programs</a>
+    <hr />
+    </nav>
+<h1>Hi there 👋</h1>
+<hr />
+<h1>Sap</h1>
+<img src="https://cdn.discordapp.com/avatars/1177730179913748540/39b0694f7c7e58f32849dcdc07dbeae7?size=1024" alt="My Profile Picture/Pfp from Discord" width="75px" id="pfp" /> 
+<h2>A Self Taught and Taught Developer I am a programmer who enjoys music, Art, and Programming Languages</h2>
+<hr />
+<h1>About Me</h1>
+<h2>My real name is Angel</h2>
+<h2>😄 Pronouns:He/him</h2>
+<h2>I go by Sap_ontop/Scaro_ontop/Ripangelhacks Online</h2>
+<h2>👀 I’m interested in Coding, Music, and Art</h2>
+<hr />
+<h1>Hobbies</h1>
+<h2>✨ Music, and Art ✨</h2>
+<hr />
+<h1>💬 Ask me about:</h1>
+<h2>Myself,</h2>
+<h2>Projects I made, and</h2>
+<h2>Learning how to program</h2>
+<hr />
+<h1>🌱 I’m currently learning these Languages/Languages I use:</h1>
+<h2>✨ HTML, JS, CSS, Lua/LuaU ✨</h2>
+<h2>I was first learning Basic code like Scratch/Code.org</h2>
+<h2>I am a Skid/Ai user to understand code and how to program in those languages</h2>
+<hr />
+<h1>What I'm Looking for</h1>
+<h2>👯 I’m looking to collaborate on: Any Project you/Projects you have or I have</h2>
+<h2>🤔 I’m looking for help with: Star</h2>
+<hr />
+<h1>Fun Facts</h1>
+<h2>⚡ Fun fact: I made other projects like Zenex hub one example is Luahub</h2>
+<h2>⚡ Fun fact: I made over 5-10 projects on GitHub</h2>
+<hr />
+<h1>📫 How to reach me:</h1>
+<a href="mailto:Scaroontop@outlook.com" target="_blank">My Work email is: Scaroontop@outlook.com (I may be slow to respond)</a>
+<h2>Discord:Sap_ontop</h2>
+<h2>Github:Scaroontop</h2>
+<a href="https://discord.com" target="_blank"><img src="https://static.vecteezy.com/system/resources/previews/018/930/604/original/discord-logo-discord-icon-transparent-free-png.png" alt="Discord Icon" width="75px" class="images"/></a>
+<a href="https://github.com/Scaroontop" target="_blank"><img src="https://tse1.mm.bing.net/th/id/OIP.7MTPJSqWfwQ7fMIpVgSGrAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" width="75px" class="images"/></a>
+<hr />
+<footer>
+✨ Made with love by Angel/Sap ✨ © Angel 2025: All rights Reserved
+</footer>
+
+<!-- Gemini 2.5 Pro Audio Player HTML -->
+<div class="player-container">
+    <div class="player">
+        <div class="song-name" id="song-name">Click anywhere to start music</div>
+        <div class="progress-container" id="progress-container">
+            <div class="progress" id="progress"></div>
+            <div class="time-indicator" id="time-indicator">0:00</div>
+        </div>
+        <div class="time-stamps">
+            <span id="current-time">0:00</span>
+            <span id="duration">0:00</span>
+        </div>
+        <div class="player-controls">
+            <button class="control-btn" id="prev-btn"><i class="fas fa-backward"></i></button>
+            <button class="control-btn play-pause-btn" id="play-pause-btn"><i class="fas fa-play"></i></button>
+            <button class="control-btn" id="next-btn"><i class="fas fa-forward"></i></button>
+            <div class="volume-container">
+                <button class="control-btn" id="volume-btn"><i class="fas fa-volume-up"></i></button>
+                <div class="volume-slider">
+                    <input type="range" min="0" max="1" step="0.01" value="1" id="volume-control">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<audio id="audio-player"></audio>
+
+
+<!-- Gemini 2.5 Pro Audio Player JavaScript -->
+<script>
+    const audioPlayer = document.getElementById('audio-player');
+    const songNameEl = document.getElementById('song-name');
+    const prevBtn = document.getElementById('prev-btn');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const progressContainer = document.getElementById('progress-container');
+    const progress = document.getElementById('progress');
+    const timeIndicator = document.getElementById('time-indicator');
+    const currentTimeEl = document.getElementById('current-time');
+    const durationEl = document.getElementById('duration');
+    const volumeBtn = document.getElementById('volume-btn');
+    const volumeControl = document.getElementById('volume-control');
+
+    const playlist = [
+        'https://scaroontop.github.io/Portfolio/audio/nytliad.mp3',
+        'https://scaroontop.github.io/Portfolio/audio/CageTheElephantCD.mp3',
+        'https://scaroontop.github.io/Portfolio/audio/GotyeSTIUTK.mp3',
+        'https://scaroontop.github.io/Portfolio/audio/MONTAGEMCONTIGO.mp3',
+        'https://scaroontop.github.io/Portfolio/audio/TRAPINFINITY.mp3'
+    ];
+
+    let currentTrackIndex = 0;
+    let isPlaying = false;
+    let isMuted = false;
+    let lastVolume = 1;
+
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+        return `${minutes}:${secs}`;
+    }
+
+    function loadSong(song) {
+        const fileName = song.split('/').pop().replace('.mp3', '');
+        songNameEl.textContent = fileName;
+        audioPlayer.src = song;
+        
+        // When metadata is loaded, update the duration
+        audioPlayer.addEventListener('loadedmetadata', () => {
+            durationEl.textContent = formatTime(audioPlayer.duration);
+        });
+    }
+
+    function playSong() {
+        isPlaying = true;
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        audioPlayer.play().catch(error => {
+            console.error("Playback was prevented by the browser. A user interaction is required.", error);
+            // Revert the state if play fails
+            pauseSong();
+        });
+    }
+
+    function pauseSong() {
+        isPlaying = false;
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        audioPlayer.pause();
+    }
+
+    function prevSong() {
+        currentTrackIndex--;
+        if (currentTrackIndex < 0) {
+            currentTrackIndex = playlist.length - 1;
+        }
+        loadSong(playlist[currentTrackIndex]);
+        if(isPlaying) playSong();
+    }
+
+    function nextSong() {
+        currentTrackIndex++;
+        if (currentTrackIndex > playlist.length - 1) {
+            currentTrackIndex = 0;
+        }
+        loadSong(playlist[currentTrackIndex]);
+        if(isPlaying) playSong();
+    }
+
+    function updateProgress(e) {
+        const { duration, currentTime } = e.srcElement;
+        if(duration) {
+            const progressPercent = (currentTime / duration) * 100;
+            progress.style.width = `${progressPercent}%`;
+            currentTimeEl.textContent = formatTime(currentTime);
+        }
+    }
+
+    function setProgress(e) {
+        const width = this.clientWidth;
+        const clickX = e.offsetX;
+        const duration = audioPlayer.duration;
+        if (duration) {
+            audioPlayer.currentTime = (clickX / width) * duration;
+        }
+    }
+
+    function showTimeIndicator(e) {
+        const width = this.clientWidth;
+        const hoverX = e.offsetX;
+        const duration = audioPlayer.duration;
+        if (duration) {
+            const hoverTime = (hoverX / width) * duration;
+            timeIndicator.textContent = formatTime(hoverTime);
+            // Clamp the position to be within the progress bar bounds
+            const indicatorWidth = timeIndicator.offsetWidth;
+            const finalPosition = Math.min(Math.max(hoverX, indicatorWidth / 2), width - indicatorWidth / 2);
+            timeIndicator.style.left = `${finalPosition}px`;
+            timeIndicator.style.display = 'block';
+        }
+    }
+
+    function hideTimeIndicator() {
+        timeIndicator.style.display = 'none';
+    }
+
+    function toggleMute() {
+        isMuted = !isMuted;
+        if (isMuted) {
+            lastVolume = audioPlayer.volume;
+            audioPlayer.volume = 0;
+            volumeControl.value = 0;
+            volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        } else {
+            audioPlayer.volume = lastVolume;
+            volumeControl.value = lastVolume;
+            volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+        }
+    }
+
+    function setVolume() {
+        const newVolume = volumeControl.value;
+        audioPlayer.volume = newVolume;
+        if (newVolume == 0) {
+            if (!isMuted) isMuted = true;
+            volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        } else {
+            if (isMuted) isMuted = false;
+            volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+        }
+    }
+
+    // --- Event Listeners ---
+    playPauseBtn.addEventListener('click', () => {
+        if (isPlaying) {
+            pauseSong();
+        } else {
+            playSong();
+        }
+    });
+
+    prevBtn.addEventListener('click', prevSong);
+    nextBtn.addEventListener('click', nextSong);
+
+    audioPlayer.addEventListener('timeupdate', updateProgress);
+    audioPlayer.addEventListener('ended', nextSong);
+    
+    progressContainer.addEventListener('click', setProgress);
+    progressContainer.addEventListener('mousemove', showTimeIndicator);
+    progressContainer.addEventListener('mouseleave', hideTimeIndicator);
+    
+    volumeBtn.addEventListener('click', toggleMute);
+    volumeControl.addEventListener('input', setVolume);
+
+    // --- Autoplay Workaround ---
+    // This function runs on the first user interaction
+    function startMusicOnFirstClick() {
+        // Now that the user has interacted, we can safely play the audio
+        playSong();
+        
+        // We only want this to run once, so we remove the event listener
+        document.removeEventListener('click', startMusicOnFirstClick);
+    }
+
+    // Load the first song metadata so the player isn't empty
+    loadSong(playlist[currentTrackIndex]);
+    
+    // Listen for the first click anywhere on the page to start the music
+    document.addEventListener('click', startMusicOnFirstClick);
+
+</script>
+
+</body>
+</html>
