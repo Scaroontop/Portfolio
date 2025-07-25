@@ -21,7 +21,8 @@
 		text-align: center;
 		color: white;
 		}
-        body {
+/*    Thanks to Gemini 2.5 pro     */
+			body {
 		background: black;
 		 background: url('https://i.ytimg.com/vi/BVXOWGoehKg/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG-B4AC0AWKAgwIABABGCMgOSh_MA8=&rs=AOn4CLDwNlb2FK661z4m9UsMhc6vILuDJA') no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -111,5 +112,64 @@
 <footer>
 ✨ Made with love by Angel/Sap ✨
 </footer>
+<!-- Made by Frogie1 https://frogiee.one upgraded by Gemini 2.5 pro -->
+<audio id="audio-player" loop></audio>
+<div id="enter-popup">...</div>
+	    <script>
+	// Made by Frogie1 https://frogiee.one upgraded by Gemini 2.5 pro
+        // Wait for the entire page to load before running the enter function
+window.addEventListener('load', enter);
+
+// --- Your Playlist ---
+// Add all your audio file paths into this array
+const audioPlaylist = [
+    '/audio/bg.mp3',
+    '/audio/another-song.mp3',
+    '/audio/third-track.wav'
+    // Add as many songs as you like
+];
+
+let currentTrackIndex = 0;
+const audioPlayer = document.getElementById('audio-player');
+
+// Function to play the current track
+function playCurrentTrack() {
+    if (currentTrackIndex < audioPlaylist.length) {
+        audioPlayer.src = audioPlaylist[currentTrackIndex];
+        audioPlayer.play();
+    }
+}
+
+// Listen for the 'ended' event to play the next track
+audioPlayer.addEventListener('ended', () => {
+    // Move to the next track
+    currentTrackIndex++;
+    // If we've reached the end of the playlist, loop back to the start
+    if (currentTrackIndex >= audioPlaylist.length) {
+        currentTrackIndex = 0;
+    }
+    playCurrentTrack();
+});
+
+// Main enter function
+function enter() {
+    let enterPopup = document.getElementById('enter-popup');
+
+    // Start playing the first track of the playlist
+    playCurrentTrack();
+
+    // Fade out the enter popup
+    if (enterPopup) {
+        enterPopup.style.transition = 'all 0.3s ease';
+        enterPopup.style.opacity = '0';
+        setTimeout(() => {
+            enterPopup.style.display = 'none';
+        }, 500);
+    }
+    
+    // If you still want the title animation
+    // requestAnimationFrame(updateTitle); 
+};
+	</script>
     </body>
 </html>
